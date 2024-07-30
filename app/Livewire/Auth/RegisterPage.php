@@ -4,11 +4,13 @@ namespace App\Livewire\Auth;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
 class RegisterPage extends Component
 {
+    use LivewireAlert;
     #[Title('Register - Prakriti Store')]
 
     public $name;
@@ -28,7 +30,15 @@ class RegisterPage extends Component
             'password'=>Hash::make($this->password),
         ]);
 
-        auth()->login($user);
+
+        $this->alert('success', 'Account Created Successfully', [
+            'position' => 'top-end',
+            'toast' => true,
+            'timerProgressBar' => true,
+            'timer' => 3000,
+          ]);
+          $this->reset();
+
         return redirect()->intended();
     }
     public function render()

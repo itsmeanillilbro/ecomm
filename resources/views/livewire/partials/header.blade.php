@@ -19,8 +19,10 @@
     <!-- animation -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/animate.css')}}" />
     <!-- style -->
+    <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/style2.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/responsive2.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}" />
     </head>
 
     <body>
@@ -48,11 +50,18 @@
                                             <li class="eur-head">
                                                 <span class="eur">account <i class="fa fa-angle-down"></i></span>
                                                 <ul class="all-currency account-details">
-                                                    <li><a href="register.html">register / log in</a></li>
-                                                    <li><a href="checkout-2.html">checkout</a></li>
-                                                    <li><a href="wishlist.html">my wishlist</a></li>
-                                                    <li><a href="tracking.html">order history</a></li>
-                                                    <li><a href="cart-2.html">my cart</a></li>
+                                                    @if(!auth()->user())
+                                                    <li><a href="/login">login</a></li>
+                                                    @endif
+                                                    <li><a href="/checkout">checkout</a></li>
+
+                                                    <li><a href="/my-orders">order history</a></li>
+                                                    <li><a href="/cart">my cart</a></li>
+                                                    @if (auth()->user())
+
+
+                                                    <li><a href="/logout">Logout</a></li>
+                                                    @endif
                                                 </ul>
                                             </li>
                                         </ul>
@@ -488,12 +497,12 @@
                                                         class="ion-ios-search-strong"></i></a>
                                             </div>
                                         </li>
-                                        <li class="side-wrap wishlist-wrap">
+                                        <!-- <li class="side-wrap wishlist-wrap">
                                             <a href="wishlist-empty.html" class="header-wishlist">
                                                 <span class="wishlist-icon"><i class="icon-heart"></i></span>
                                                 <span class="wishlist-counter">0</span>
                                             </a>
-                                        </li>
+                                        </li> -->
                                         <li class="side-wrap cart-wrap">
                                             <div class="shopping-widget">
                                                 <div class="shopping-cart">

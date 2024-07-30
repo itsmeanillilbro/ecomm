@@ -11,6 +11,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\SelectColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -36,10 +38,11 @@ class UserResource extends Resource
                 ->email()
                 ->required(),
 
-                Forms\Components\DatePicker::make('email_verified_at')
-                ->required()
-
-                ->default(now()),
+                Forms\Components\Select::make('roles')
+                ->relationship('roles', 'name')
+                ->multiple()
+                ->preload()
+                ->searchable(),
 
                 Forms\Components\TextInput::make('password')
                 ->password()
@@ -56,7 +59,8 @@ class UserResource extends Resource
                 ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                 ->searchable(),
-
+               TextColumn::make('roles.name')
+                ,
                 Tables\Columns\TextColumn::make('email_verified_at')
                 ->date()
                 ->searchable()

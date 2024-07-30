@@ -3,11 +3,13 @@
 namespace App\Livewire\Auth;
 
 use Illuminate\Support\Facades\Password;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
 class ForgotPage extends Component
 {
+    use LivewireAlert;
     #[Title('Forget Password - Prakriti Store')]
 
     public $email;
@@ -17,8 +19,16 @@ public function save(){
     ]);
 
     $status= Password::sendResetLink(['email'=>$this->email]);
+
+
     if($status===Password::RESET_LINK_SENT){
-        session()->flash('success','Password reset link has been sent to your email!');
+        $this->alert('success', 'Reset Password Link Sent Successfully', [
+            'position' => 'top-end',
+            'toast' => true,
+            'timerProgressBar' => true,
+            'timer' => 7000,
+          ]);
+          $this->reset();
     }
 }
     public function render()

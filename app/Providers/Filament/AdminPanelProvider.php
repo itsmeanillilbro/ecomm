@@ -64,6 +64,9 @@ class AdminPanelProvider extends PanelProvider
             ->profile(\App\Filament\Pages\Auth\EditProfile::class)
             ->profile(isSimple: false)
             ->spa()
+            ->plugins([
+                \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make()
+            ])
 
             ->authMiddleware([
                 Authenticate::class,

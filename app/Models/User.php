@@ -8,10 +8,11 @@ use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -54,12 +55,7 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        $authorizedEmails = [
-            'sthaprakrisa@gmail.com',
-            'yohohoho4984@gmail.com',
-            'admin@gmail.com',  // Add additional authorized emails here
-        ];
-
-        return in_array($this->email, $authorizedEmails);
+        $allowedRoles = ['super_admin', 'admin', 'user'];
+        return $this->hasAnyRole($allowedRoles);
     }
 }

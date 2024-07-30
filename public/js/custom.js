@@ -459,7 +459,7 @@ $('.home2-trending').owlCarousel({
 ==============================================================*/
 
 $('.home2-cate-image').owlCarousel({
-    loop: true,
+    loop: false,
     rewind: true,
     nav: true,
     navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
@@ -1239,7 +1239,7 @@ $('.featured5-pro').owlCarousel({
             items: 4
         },
         1199:{
-            items: 4 
+            items: 4
         }
     }
 });
@@ -1748,7 +1748,7 @@ jQuery(function ($) {
 
 // **************************************** cart page********************************************
 
-/* ========================================== 
+/* ==========================================
   Minus and Plus Btn Height
   ========================================== */
 
@@ -1782,11 +1782,11 @@ jQuery(function ($) {
 
 // **************************************** product page ********************************************
 
-    
-  /* ========================================== 
+
+  /* ==========================================
   //additional
   ========================================== */
-  
+
     $('.pro-page-slider').owlCarousel({
         loop: true,
         margin: 15,
@@ -1831,7 +1831,7 @@ jQuery(function ($) {
         $(this).addClass('active');
     });
 
-  /* ========================================== 
+  /* ==========================================
    //related product
   ========================================== */
   $('.releted-products').owlCarousel({
@@ -1861,9 +1861,9 @@ jQuery(function ($) {
       items: 4
     }
   }
-});  
+});
 
-   /* ========================================== 
+   /* ==========================================
    // index 7
   ========================================== */
 
@@ -1897,57 +1897,57 @@ jQuery(function ($) {
 
 
 if(document.getElementById('day')){
-    var deadline = new Date("july 30, 2050 15:37:25").getTime();             
+    var deadline = new Date("july 30, 2050 15:37:25").getTime();
     var x = setInterval(function() {
-       var currentTime = new Date().getTime();                
-       var t = deadline - currentTime; 
-       var days = Math.floor(t / (1000 * 60 * 60 * 24)); 
-       var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
-       var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
-       var seconds = Math.floor((t % (1000 * 60)) / 1000); 
-       
-           document.getElementById("day").innerHTML = days ; 
-           document.getElementById("hour").innerHTML =hours; 
-           document.getElementById("minute").innerHTML = minutes; 
-           document.getElementById("second").innerHTML =seconds; 
-           if (t < 0) {
-              clearInterval(x); 
-              document.getElementById("time-up").innerHTML = "TIME UP"; 
-              document.getElementById("day").innerHTML ='0'; 
-              document.getElementById("hour").innerHTML ='0'; 
-              document.getElementById("minute").innerHTML ='0' ; 
-              document.getElementById("second").innerHTML = '0'; 
-           } 
-        
+       var currentTime = new Date().getTime();
+       var t = deadline - currentTime;
+       var days = Math.floor(t / (1000 * 60 * 60 * 24));
+       var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60));
+       var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+       var seconds = Math.floor((t % (1000 * 60)) / 1000);
 
-    }, 1000); 
+           document.getElementById("day").innerHTML = days ;
+           document.getElementById("hour").innerHTML =hours;
+           document.getElementById("minute").innerHTML = minutes;
+           document.getElementById("second").innerHTML =seconds;
+           if (t < 0) {
+              clearInterval(x);
+              document.getElementById("time-up").innerHTML = "TIME UP";
+              document.getElementById("day").innerHTML ='0';
+              document.getElementById("hour").innerHTML ='0';
+              document.getElementById("minute").innerHTML ='0' ;
+              document.getElementById("second").innerHTML = '0';
+           }
+
+
+    }, 1000);
 
 }
 
 if(document.getElementById('days')){
     //alert('sf');
-    var deadline = new Date("july 30, 2026 15:37:25").getTime();             
+    var deadline = new Date("july 30, 2026 15:37:25").getTime();
     var x = setInterval(function() {
-       var currentTime = new Date().getTime();                
-       var t = deadline - currentTime; 
-       var days = Math.floor(t / (1000 * 60 * 60 * 24)); 
-       var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
-       var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
-       var seconds = Math.floor((t % (1000 * 60)) / 1000); 
-       
-           document.getElementById("days").innerHTML = days ; 
-           document.getElementById("hours").innerHTML =hours; 
-           document.getElementById("minutes").innerHTML = minutes; 
-           document.getElementById("seconds").innerHTML =seconds; 
+       var currentTime = new Date().getTime();
+       var t = deadline - currentTime;
+       var days = Math.floor(t / (1000 * 60 * 60 * 24));
+       var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60));
+       var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+       var seconds = Math.floor((t % (1000 * 60)) / 1000);
+
+           document.getElementById("days").innerHTML = days ;
+           document.getElementById("hours").innerHTML =hours;
+           document.getElementById("minutes").innerHTML = minutes;
+           document.getElementById("seconds").innerHTML =seconds;
            if (t < 0) {
-              clearInterval(x); 
-              document.getElementById("time-up").innerHTML = "TIME UP"; 
-              document.getElementById("days").innerHTML ='0'; 
-              document.getElementById("hours").innerHTML ='0'; 
-              document.getElementById("minutes").innerHTML ='0' ; 
-              document.getElementById("seconds").innerHTML = '0'; 
-           } 
-    }, 1000); 
+              clearInterval(x);
+              document.getElementById("time-up").innerHTML = "TIME UP";
+              document.getElementById("days").innerHTML ='0';
+              document.getElementById("hours").innerHTML ='0';
+              document.getElementById("minutes").innerHTML ='0' ;
+              document.getElementById("seconds").innerHTML = '0';
+           }
+    }, 1000);
 }
 
 // **************************************** blog page ********************************************
@@ -1981,7 +1981,7 @@ $('.single-image-carousel').owlCarousel({
     }
 });
 
-/* ========================================== 
+/* ==========================================
    //blog
   ========================================== */
 
@@ -2301,8 +2301,8 @@ breakpoints: {
   }
 },
 });
-    
-// testimonials 
+
+// testimonials
 var swiper = new Swiper('.swiper-container#testimonials', {
   slidesPerColumn: 1,
   slidesPerView: 3,
@@ -2444,7 +2444,7 @@ breakpoints: {
     },
 });
 
-// special product 
+// special product
 var swiper = new Swiper('.swiper-container.healthy-product', {
 slidesPerColumn: 1,
 slidesPerView: 4,
@@ -2612,14 +2612,14 @@ var swiper = new Swiper('.swiper-container.home-pro-tab-slider', {
 });
 
 /*==============================================================
-    home category 
+    home category
 ==============================================================*/
 var swiper = new Swiper('.swiper-container#home-category-slider', {
   slidesPerColumn: 1,
   slidesPerView: 6,
   spaceBetween: 30,
   observer: true,
-  loops: true, 
+  loops: true,
   observeParents: true,
   navigation: {
     nextEl: '.swiper-prev-cat',
@@ -2731,13 +2731,13 @@ $('#home-12-slider').owlCarousel({
     animateIn: 'fadeIn'
 });
 
-//  category 
+//  category
 var swiper = new Swiper('.swiper-container#cat-slider', {
   slidesPerColumn: 1,
   slidesPerView: 6,
   spaceBetween: 0,
   observer: true,
-  loops: true, 
+  loops: true,
   observeParents: true,
   navigation: {
     nextEl: '.cat-button-prev',
@@ -2824,7 +2824,7 @@ var swiper = new Swiper('.swiper-container#blog-home12', {
   slidesPerView: 3,
   spaceBetween: 30,
   observer: true,
-  loops: true, 
+  loops: true,
   observeParents: true,
   navigation: {
     nextEl: '.blog-button-next',
@@ -2887,7 +2887,7 @@ var swiper = new Swiper('.swiper-container#home-cat', {
     slidesPerView: 6,
     spaceBetween: 30,
     observer: true,
-    loops: true, 
+    loops: true,
     observeParents: true,
     autoplay: true,
     autoplayTimeout: 5000,
@@ -2923,7 +2923,7 @@ var swiper = new Swiper('.swiper-container#home-cat', {
             }
         }
     });
-    
+
     // home product
     var swiper = new Swiper('.swiper-container#home-pro-slider', {
         slidesPerColumn: 1,
@@ -2969,7 +2969,7 @@ var swiper = new Swiper('.swiper-container#home-cat', {
         },
     });
 
-    // testimonials 
+    // testimonials
     var swiper = new Swiper('.swiper-container#testimonials-13', {
       slidesPerColumn: 1,
       slidesPerView: 2,
@@ -3103,7 +3103,7 @@ var swiper = new Swiper('.swiper-container#home-slider-14', {
         slidesPerView: 6,
         spaceBetween: 15,
         observer: true,
-        loops: true, 
+        loops: true,
         observeParents: true,
         autoplay: true,
         autoplayTimeout: 5000,
@@ -3188,7 +3188,7 @@ var swiper = new Swiper('.swiper-container#home-slider-14', {
         },
     });
 
-    // testimonials 
+    // testimonials
     var swiper = new Swiper('.swiper-container#testimonials-14', {
       slidesPerColumn: 1,
       slidesPerView: 2,
@@ -3274,9 +3274,9 @@ var swiper = new Swiper('.swiper-container#home-slider-14', {
 //         layoutMode: 'masonry'
 //     });
 // });
- 
 
-// **************************************** home-15 ******************************************** 
+
+// **************************************** home-15 ********************************************
 
     // slider
     var swiper = new Swiper('.swiper-container#home-slider-15', {
@@ -3309,7 +3309,7 @@ var swiper = new Swiper('.swiper-container#home-slider-14', {
         slidesPerView: 6,
         spaceBetween: 30,
         observer: true,
-        loops: true, 
+        loops: true,
         observeParents: true,
         autoplay: true,
         autoplayTimeout: 5000,
@@ -3353,7 +3353,7 @@ var swiper = new Swiper('.swiper-container#home-slider-14', {
       slidesPerView: 3,
       spaceBetween: 30,
       observer: true,
-      loops: true, 
+      loops: true,
       observeParents: true,
       navigation: {
         nextEl: '.tab-button-next',
@@ -3417,7 +3417,7 @@ var swiper = new Swiper('.swiper-container#home-slider-14', {
     }
   });
 
-    // testimonials 
+    // testimonials
     var swiper = new Swiper('.swiper-container#testimonials-15', {
       slidesPerColumn: 1,
       slidesPerView: 3,
@@ -3523,7 +3523,7 @@ var swiper = new Swiper('.swiper-container#home-slider-14', {
         slidesPerView: 1,
         spaceBetween: 30,
         observer: true,
-        loops: true, 
+        loops: true,
         observeParents: true,
         navigation: {
             nextEl: '.tab-button-next',
@@ -3580,7 +3580,7 @@ var swiper = new Swiper('.swiper-container#home-slider-14', {
                     tthotspotcontent.addClass("open");
                 }, 300);
             }
-        e.stopPropagation(); 
+        e.stopPropagation();
         e.preventDefault();
     });
 
@@ -3632,7 +3632,7 @@ var swiper = new Swiper('.swiper-container#home-slider-14', {
         },
     });
 
-    // testimonials 
+    // testimonials
     var swiper = new Swiper('.swiper-container#testimonials-16', {
         slidesPerColumn: 1,
         slidesPerView: 4,
@@ -3794,7 +3794,7 @@ var swiper = new Swiper('.swiper-container#home-slider-14', {
         slidesPerView: 6,
         spaceBetween: 30,
         observer: true,
-        loops: true, 
+        loops: true,
         observeParents: true,
         autoplay: true,
         autoplayTimeout: 5000,
@@ -3953,7 +3953,7 @@ var swiper = new Swiper('.swiper-container#home-slider-14', {
         slidesPerView: 3,
         spaceBetween: 30,
         observer: true,
-        loops: true, 
+        loops: true,
         observeParents: true,
         autoplay: true,
         autoplayTimeout: 5000,
@@ -4061,7 +4061,7 @@ var swiper = new Swiper('.swiper-container#home-slider-14', {
         slidesPerView: 6,
         spaceBetween: 30,
         observer: true,
-        loops: true, 
+        loops: true,
         observeParents: true,
         autoplay: true,
         autoplayTimeout: 5000,
@@ -4169,7 +4169,7 @@ var swiper = new Swiper('.swiper-container#home-slider-14', {
         slidesPerView: 4,
         spaceBetween: 30,
         observer: true,
-        loops: true, 
+        loops: true,
         observeParents: true,
         autoplay: true,
         autoplayTimeout: 5000,

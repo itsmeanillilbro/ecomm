@@ -75,7 +75,7 @@ class ProductResource extends Resource
                             ->columnSpan(2)
                             ->enableReordering()
 
-                            ,
+                        ,
                     ])->columns(2)
                 ])->columnSpan(2),
 
@@ -133,7 +133,7 @@ class ProductResource extends Resource
             ->columns([
 
                 Tables\Columns\TextColumn::make('name')
-                ->limit(80)
+                    ->limit(80)
                     ->searchable(),
 
                 TextColumn::make('category.name')
@@ -170,18 +170,23 @@ class ProductResource extends Resource
 
                 SelectFilter::make('brands')
                     ->relationship('brand', 'name'),
+                Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
-            ActionGroup::make([
-                   ViewAction::make(),
-                   EditAction::make(),
-                    DeleteAction::make()
+                ActionGroup::make([
+                    ViewAction::make(),
+                    EditAction::make(),
+                    DeleteAction::make(),
+                    Tables\Actions\ForceDeleteAction::make(),
+                    Tables\Actions\RestoreAction::make(),
                 ])
 
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\ForceDeleteBulkAction::make(),
+                    Tables\Actions\RestoreBulkAction::make(),
                 ]),
             ]);
     }
@@ -201,6 +206,12 @@ class ProductResource extends Resource
             'edit' => Pages\EditProduct::route('/{record}/edit'),
         ];
     }
-
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
+    }
 
 }
