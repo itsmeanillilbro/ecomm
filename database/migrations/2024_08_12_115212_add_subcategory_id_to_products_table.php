@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products', function(Blueprint $table){
-            $table->softDeletes();
+        Schema::table('products', function (Blueprint $table) {
+            $table->unsignedBigInteger('subcategory_id')->nullable()->after('category_id');
+            $table->foreign('subcategory_id')->references('id')->on('sub_categories')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropSoftDeletes();
+            $table->dropForeign(['subcategory_id']);
+            $table->dropColumn('subcategory_id');
         });
     }
+
 };

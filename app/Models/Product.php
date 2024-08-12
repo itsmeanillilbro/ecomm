@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'category_id',
+        'subcategory_id',
         'brand_id',
         'name',
         'slug',
@@ -22,7 +23,9 @@ class Product extends Model
         'is_active',
         'is_featured',
         'is_stock',
-        'is_sale'
+        'is_sale',
+        'is_trending',
+        'is_freeshipping'
     ];
 
     protected $casts = [
@@ -33,7 +36,10 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
-
+    public function subcategory()
+    {
+        return $this->belongsTo(SubCategory::class);
+    }
     public function brand()
     {
         return $this->belongsTo(Brand::class);

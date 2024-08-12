@@ -26,6 +26,7 @@ class ResetPasswordPage extends Component
     public function mount($token)
     {
         $this->token = $token;
+        \Log::info('Token:', ['token' => $this->token]);
     }
 
     public function save()
@@ -46,7 +47,6 @@ class ResetPasswordPage extends Component
             ]);
             return;
         }
-
 
         if (Hash::check($this->password, $user->password)) {
             $this->alert('error', 'The new password cannot be the same as the old password.', [
@@ -71,8 +71,11 @@ class ResetPasswordPage extends Component
                 ])->setRememberToken(Str::random(60));
                 $user->save();
                 event(new PasswordReset($user));
+                \Log::info('Password updated for user:', ['email' => $user->email]);
             }
         );
+
+        \Log::info('Password reset status:', ['status' => $status]);
 
         if ($status === Password::PASSWORD_RESET) {
             session()->flash('passwordsuccess', 'Password reset successfully');

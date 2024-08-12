@@ -9,20 +9,22 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+
+        public function up(): void
     {
         Schema::table('products', function(Blueprint $table){
-            $table->softDeletes();
+
+            $table->boolean('is_trending');
+            $table->boolean('is_freeshipping');
         });
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
+        //
     }
 };

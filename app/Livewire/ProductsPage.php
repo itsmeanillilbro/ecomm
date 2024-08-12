@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Livewire;
 
 use App\Helpers\CartManagement;
@@ -22,55 +21,43 @@ class ProductsPage extends Component
 
     #[Url]
     public $categories_select = [];
-
-
     #[Url]
     public $brands_select = [];
-
-    #[Url]
-    public $is_featured = [];
-
     #[Url]
     public $sort = 'latest';
-    public $pricee = 300000;
+    public $pricee = 100000;
 
-    //   public function isProductInCart($product_id)
-    // {
-    //     $cart_items = CartManagement::getCartItemsFromCookie();
-    //     foreach ($cart_items as $item) {
-    //         if ($item['product_id'] == $product_id) {
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
 
-    public function addToCart($product_id) {
-        // if ($this->isProductInCart($product_id)) {
+    protected $updatesQueryString = [
+        'categories_select',
+        'brands_select',
+        'sort',
+        'min_price',
+        'max_price',
+    ];
 
-        //   $this->alert('info', 'Product already in your cart!', [
-        //     'position' => 'top-end',
-        //     'toast' => true,
-        //     'timer' => 3000
-        //   ]);
-        // } else {
-            if (!Auth::check()) {
-                return redirect()->route('login');
-            }
+    public function updated($propertyName)
+    {
+        $this->resetPage();
+    }
 
-          $total_count = CartManagement::addItemsToCart($product_id);
-          $this->dispatch('update-cart-count', total_count:$total_count)->to(Header::class);
-          $this->alert('success', 'Product added successfully', [
+    public function addToCart($product_id)
+    {
+        // if (!Auth::check()) {
+        //     return redirect()->route('login');
+        // }
+
+        $total_count = CartManagement::addItemsToCart($product_id);
+        $this->dispatch('update-cart-count', total_count: $total_count)->to(Header::class);
+        $this->alert('success', 'Product added successfully', [
             'position' => 'top-start',
             'toast' => true,
             'timerProgressBar' => true,
             'timer' => 3000,
-          ]);
-        // }
-      }
+        ]);
+    }
 
-
-       public function render()
+    public function render()
     {
         $products = Product::query()->where('is_active', 1);
 
@@ -80,10 +67,6 @@ class ProductsPage extends Component
 
         if (!empty($this->brands_select)) {
             $products->whereIn('brand_id', $this->brands_select);
-        }
-
-        if (!empty($this->is_featured)) {
-            $products->where('is_featured', 1);
         }
 
         if (!empty($this->pricee)) {
@@ -100,8 +83,8 @@ class ProductsPage extends Component
 
         return view('livewire.products-page', [
             'products' => $products->paginate(6),
-            'brands' => Brand::where('is_active', 1)->get(['id', 'name', 'slug']),
-            'categories' => Category::where('is_active', 1)->get(['id', 'name', 'slug'])
+            'brands' => Brand::where('is_active', 1)->take(12)->get(['id', 'name', 'slug']),
+            'categories' => Category::where('is_active', 1)->take(12)->get(['id', 'name', 'slug']),
         ]);
     }
 }

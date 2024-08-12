@@ -11,6 +11,9 @@ use Livewire\Component;
 class CartPage extends Component
 {
 
+    public $total_count = 0;
+
+
     use LivewireAlert;
     #[Title('Cart - Prakriti Store')]
     public $cart_items = [];
@@ -20,6 +23,12 @@ class CartPage extends Component
     {
         $this->cart_items = CartManagement::getCartItemsFromCookie();
         $this->grand_total = CartManagement::grandTotal($this->cart_items);
+        $this->total_count = count(CartManagement::getCartItemsFromCookie());
+    }
+    #[On('update-cart-count')]
+    public function updateCartCount($total_count)
+    {
+        $this->total_count = $total_count;
     }
 
     public function increaseQty($product_id)

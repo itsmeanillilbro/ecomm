@@ -9,7 +9,9 @@ export default {
 
 
     theme: {
-        extend: {},
+        extend: {
+
+        },
     },
     plugins: [require("preline/plugin")],
 };

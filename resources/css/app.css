@@ -1,10 +1,9 @@
 @tailwind base;
-
-@layer base {
-    code {
-     text-wrap: wrap;
-     color: whitesmoke;
-    }
-  }
 @tailwind components;
 @tailwind utilities;
+.bg-slate-200 {
+    background-color: #fff !important; /* Override the default slate-200 background color */
+  }
+/* .collapse{
+    visibility:visible !important;
+} */

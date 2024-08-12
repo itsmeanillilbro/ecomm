@@ -4,7 +4,9 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\SubCategory;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
@@ -34,7 +36,7 @@ class ProductResource extends Resource
 
     protected static ?string $navigationIcon = 'fab-product-hunt';
     protected static ?string $recordTitleAttribute = 'name';
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 5;
     public static function form(Form $form): Form
     {
         return $form
@@ -89,11 +91,29 @@ class ProductResource extends Resource
                     ]),
 
                     Section::make('Association')->schema([
+                        // Select::make('category_id')
+                        //     ->required()
+                        //     ->searchable()
+                        //     ->preload()
+                        //     ->relationship('category', 'name'),
                         Select::make('category_id')
-                            ->required()
-                            ->searchable()
-                            ->preload()
+                            ->label('Category')
                             ->relationship('category', 'name')
+                            ->required()
+                            ->afterStateUpdated(function (callable $get, callable $set) {
+                                $categoryId = $get('category_id');
+                                $set('subcategory_id', null);
+                            }),
+                        Select::make('subcategory_id')
+                            ->label('Subcategory')
+                            ->required()
+                            ->options(function (callable $get) {
+                                $categoryId = $get('category_id');
+                                $subcategories = SubCategory::where('category_id', $categoryId)->pluck('name', 'id');
+                                return $subcategories;
+                            })
+                            ->searchable()
+                            ->preload(),
                     ]),
 
                     Section::make('Brands')->schema([
@@ -105,7 +125,7 @@ class ProductResource extends Resource
                     ]),
 
 
-                    Section::make('status')->schema([
+                    Section::make('Status')->schema([
                         Toggle::make('is_active')
                             ->required()
                             ->default(true),
@@ -114,10 +134,15 @@ class ProductResource extends Resource
                             ->required()
                             ->default(true),
 
-                        Toggle::make('is_featured')
+                        // Toggle::make('is_featured')
+                        //     ->required(),
+
+
+                        Toggle::make('is_trending')
                             ->required(),
 
-                        Toggle::make('is_sale')
+                        Toggle::make('is_freeshipping')
+                            ->label('Free Shipping?')
                             ->required()
 
                     ])
@@ -136,25 +161,25 @@ class ProductResource extends Resource
                     ->limit(80)
                     ->searchable(),
 
-                TextColumn::make('category.name')
+                // TextColumn::make('category.name')
+                //     ->searchable()
+                //     ->sortable(),
+
+                TextColumn::make('subcategory.name')
+                    ->label('Category')
                     ->searchable()
                     ->sortable(),
-
-
                 Tables\Columns\TextColumn::make('brand.name')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\ImageColumn::make('images.0')
+                    ->label('Image'),
                 Tables\Columns\TextColumn::make('price')
                     ->money("NPR")
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),
-                Tables\Columns\IconColumn::make('is_featured')
-                    ->boolean(),
-                Tables\Columns\IconColumn::make('is_stock')
-                    ->boolean(),
-                Tables\Columns\IconColumn::make('is_sale')
-                    ->boolean(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -165,28 +190,21 @@ class ProductResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                SelectFilter::make('category')
-                    ->relationship('category', 'name'),
 
-                SelectFilter::make('brands')
-                    ->relationship('brand', 'name'),
-                Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
                 ActionGroup::make([
                     ViewAction::make(),
                     EditAction::make(),
                     DeleteAction::make(),
-                    Tables\Actions\ForceDeleteAction::make(),
-                    Tables\Actions\RestoreAction::make(),
+
                 ])
 
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                    Tables\Actions\ForceDeleteBulkAction::make(),
-                    Tables\Actions\RestoreBulkAction::make(),
+
                 ]),
             ]);
     }
@@ -206,12 +224,6 @@ class ProductResource extends Resource
             'edit' => Pages\EditProduct::route('/{record}/edit'),
         ];
     }
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
-    }
+
 
 }

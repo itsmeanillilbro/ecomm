@@ -8,7 +8,7 @@
                         <h4 class="forgot-title">Forgot password?</h4>
                         <div class="forgot-p">
                             <span class="forgot">Reset your password here</span>
-                            <form wire:submit.prevent="save" >
+                            <form wire:submit.prevent="save">
                                 <div>
 
                                 </div>
@@ -16,8 +16,10 @@
                                 @error('email')
                                     <div class="error-message">{{$message}}</div>
                                 @enderror
-                                <button  type="submit" class="forgot-link"><span>Get new password <i
-                                class="fa fa-unlock"></i></span></button>
+                                <button type="submit" class="forgot-link"><span wire:loading.remove>Get new password <i
+                                            class="fa fa-unlock"></i></span> <span wire:loading>Sending... <i
+                                            class="fa fa-unlock"></i></span></button>
+
                             </form>
 
                         </div>

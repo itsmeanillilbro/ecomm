@@ -58,7 +58,7 @@
                     <i class="fa fa-angle-down"></i>
                   </a>
                   <ul
-                    class="f-link-ul collapse"
+                    class="f-link-ul"
                     id="t-cate"
                     data-bs-parent="#footer-accordian"
                   >
@@ -90,7 +90,7 @@
                     <i class="fa fa-angle-down"></i>
                   </a>
                   <ul
-                    class="f-link-ul collapse"
+                    class="f-link-ul "
                     id="services"
                     data-bs-parent="#footer-accordian"
                   >
@@ -118,7 +118,7 @@
                     <i class="fa fa-angle-down"></i>
                   </a>
                   <ul
-                    class="f-link-ul collapse"
+                    class="f-link-ul"
                     id="privacy"
                     data-bs-parent="#footer-accordian"
                   >
@@ -146,7 +146,7 @@
                     <i class="fa fa-angle-down"></i>
                   </a>
                   <ul
-                    class="f-link-ul collapse"
+                    class="f-link-ul "
                     id="account"
                     data-bs-parent="#footer-accordian"
                   >

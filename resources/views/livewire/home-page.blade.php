@@ -11,7 +11,7 @@
                                 <span class="menu-cat-title">Browse category</span>
                                 <span class="menu-down-icon"><i class="ion-ios-arrow-down"></i></span>
                             </a>
-                            <div class="main-wrap collapse" id="vega-menu">
+                            <div class="main-wrap " id="vega-menu">
                                 <ul class="vega-menu">
                                     <li class="menu-link parent">
                                         <a href="javascript:void(0)" class="link-title">

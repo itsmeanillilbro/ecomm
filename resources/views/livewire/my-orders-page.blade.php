@@ -5,7 +5,7 @@
     <div class="-m-1.5 overflow-x-auto">
       <div class="p-1.5 min-w-full inline-block align-middle">
         <div class="overflow-hidden">
-          <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+          <table class="min-w-full divide-y divide-gray-200 ">
             <thead>
               <tr>
                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Order</th>
@@ -49,12 +49,12 @@
 
     @endphp
 
-              <tr class="odd:bg-white even:bg-gray-100 dark:odd:bg-slate-900 dark:even:bg-slate-800">
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">{{$order->id}}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{{ $order->created_at->format('d-m-Y') }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{!! $status !!} </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{!! $payment_status !!}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{{ Number::currency($order->grand_total, 'NPR' )}}</td>
+              <tr class="odd:bg-white even:bg-gray-100 ">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 ">{{$order->id}}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 ">{{ $order->created_at->format('d-m-Y') }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 ">{!! $status !!} </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 ">{!! $payment_status !!}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 ">{{ Number::currency($order->grand_total, 'NPR' )}}</td>
                 <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                   <a href="my-orders/{{$order->id}}" class="bg-slate-600 text-white py-2 px-4 rounded-md hover:bg-slate-500">View Details</a>
                 </td>

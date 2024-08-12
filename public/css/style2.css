@@ -211,8 +211,8 @@ body.hidden {
     padding-bottom: 80px;
 }
 .section-tb-padding{
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-top: 20px;
+    padding-bottom: 30px;
 }
 /* section title css */
 .section-title h2{
@@ -340,7 +340,7 @@ body.hidden {
     background-size: cover;
 }
 .top-2 ul.top-home{
-    color: #fff;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -361,7 +361,7 @@ body.hidden {
     }
 }
 /* currency account css */
-.top-2 ul.top-home li.top-home-li .currency{
+.top-2 ul.top-home li.top-home-li .currency {
     position: relative;
     margin-left: 15px;
     display: inline-flex;
@@ -369,39 +369,38 @@ body.hidden {
     text-transform: uppercase;
 }
 .top-2 ul.top-home li.top-home-li .currency .currency-drop ul.cry {
-    padding: 10px 0px;
+    padding: 10px 0;
+    list-style: none;
 }
-.top-2 ul.top-home li.top-home-li .currency .currency-drop ul.cry li.eur-head ul.account-details{
+.top-2 ul.top-home li.top-home-li .currency .currency-drop ul.cry li.eur-head ul.account-details {
     width: 170px;
 }
-.top-2 ul.top-home li.top-home-li .currency .currency-drop ul.cry li.eur-head ul.all-drop-currency{
+.top-2 ul.top-home li.top-home-li .currency .currency-drop ul.cry li.eur-head ul.all-drop-currency {
     width: 85px;
 }
-.top-2 ul.top-home li.top-home-li .currency .currency-drop ul.cry li.eur-head ul.all-currency{
+.top-2 ul.top-home li.top-home-li .currency .currency-drop ul.cry li.eur-head ul.all-currency {
     background: #fff;
     position: absolute;
-    right: 15px;
+    right: 0;
     top: calc(100% + 0px);
     opacity: 0;
     visibility: hidden;
     z-index: 3;
-    padding: 10px 0px;
+    padding: 10px 0;
     box-shadow: 0 .5px 10px rgba(0,0,0,.15);
-    -webkit-transition: all 0.3s ease-in-out 0s;
-    -o-transition: all 0.3s ease-in-out 0s;
-    transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out;
 }
-.top-2 ul.top-home li.top-home-li .currency .currency-drop ul.cry li.eur-head ul.all-currency li{
+.top-2 ul.top-home li.top-home-li .currency .currency-drop ul.cry li.eur-head ul.all-currency li {
     padding: 5px 15px;
 }
-.top-2 ul.top-home li.top-home-li .currency .currency-drop ul.cry:hover li.eur-head ul.all-currency{
+.top-2 ul.top-home li.top-home-li .currency .currency-drop ul.cry:hover li.eur-head ul.all-currency {
     opacity: 1;
     visibility: visible;
 }
-.top-2 ul.top-home li.top-home-li .currency .currency-drop ul.cry li.eur-head span.eur i{
+.top-2 ul.top-home li.top-home-li .currency .currency-drop ul.cry li.eur-head span.eur i {
     font-size: 16px;
 }
-.top-2 ul.top-home li.top-home-li .currency .currency-drop ul.cry li.eur-head span.eur img{
+.top-2 ul.top-home li.top-home-li .currency .currency-drop ul.cry li.eur-head span.eur img {
     margin-right: 4px;
 }
 /* header top css */
@@ -870,7 +869,15 @@ button.navbar-toggler span.line::after{
 .megamenu-content .mainwrap ul.main-menu li.menu-link ul.dropdown-submenu.mega-menu.collapse:not(.show),
 .megamenu-content .mainwrap ul.main-menu li.menu-link ul.dropdown-submenu.banner-menu.collapse:not(.show){
     display: flex;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 100%; /* Adjust as needed */
+}
+.header-element.megamenu-content {
+    position: relative; /* Ensure the parent container is positioned relatively */
 }
 .megamenu-content .mainwrap ul.main-menu li.menu-link ul.dropdown-submenu{
     position: absolute;
@@ -880,7 +887,7 @@ button.navbar-toggler span.line::after{
     background-color: #fff;
     z-index: 3;
     opacity: 0;
-    visibility: hidden;
+    /* visibility: hidden; */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
 }
 .megamenu-content .mainwrap ul.main-menu li.menu-link:hover ul.dropdown-submenu{
@@ -916,8 +923,8 @@ button.navbar-toggler span.line::after{
     padding: 0px 5px;
 }
 .megamenu-content .mainwrap ul.main-menu li.menu-link ul.dropdown-submenu.mega-menu li.megamenu-li{
-    width: 25%;
-    padding: 0px 15px;
+    width: 33.33%;
+    padding: 15px;
 }
 .megamenu-content .mainwrap ul.main-menu li.menu-link ul.dropdown-submenu.mega-menu li.megamenu-li h2.sublink-title{
     font-size: 14px;
@@ -2396,10 +2403,7 @@ button.navbar-toggler span.line::after{
     display: flex;
     align-items: center;
 }
-.cart-area .cart-details .cart-all-pro .qty-item .plus-minus span{
-    display: flex;
-    border: 1px solid #eee;
-}
+
 .cart-area .cart-details .cart-all-pro .qty-item .plus-minus span a{
     width: 30px;
     height: 30px;
@@ -3271,3 +3275,10 @@ a.scroll:hover span{
     padding: 2rem;
 
 }
+
+
+.profilesvg{
+    height: 25px;
+    width: 25px;
+}
+

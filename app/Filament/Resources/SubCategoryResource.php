@@ -2,10 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CategoryResource\Pages;
-use App\Filament\Resources\CategoryResource\RelationManagers;
-use App\Models\Category;
+use App\Filament\Resources\SubCategoryResource\Pages;
+use App\Filament\Resources\SubCategoryResource\RelationManagers;
+use App\Models\SubCategory;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
@@ -15,20 +23,21 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
 
-class CategoryResource extends Resource
+class SubCategoryResource extends Resource
 {
-    protected static ?string $model = Category::class;
-    protected static ?string $navigationLabel = 'Category';
+    protected static ?string $model = SubCategory::class;
 
-    protected static ?string $navigationIcon = 'fas-list';
-
-    protected static ?string $recordTitleAttribute = 'name';
+    protected static ?string $navigationIcon = 'heroicon-o-tag';
+    protected static ?string $navigationLabel = 'Sub Category';
     protected static ?string $navigationGroup = 'Categories';
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 4;
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+
+
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255)
@@ -39,15 +48,26 @@ class CategoryResource extends Resource
                         }
                         $set('slug', Str::slug($state));
                     }),
+
                 Forms\Components\TextInput::make('slug')
                     ->required()
                     ->maxLength(255)
                 ,
-                // Forms\Components\FileUpload::make('image')
-                // ->directory('uploads/categories')
-                //     ->image(),
+                Forms\Components\Grid::make(12)->schema([
+                    Forms\Components\FileUpload::make('image')
+                        ->directory('uploads/categories')
+                        ->image()
+                        ->columnSpan(8), // Spans remaining columns to total 12
+                    Select::make('category_id')
+                        ->label('Category')
+                        ->relationship('category', 'name')
+                        ->required()
+                        ->columnSpan(4), // Spans 3 columns
+                ]),
+
                 Forms\Components\Toggle::make('is_active')
                     ->required(),
+
             ]);
     }
 
@@ -55,33 +75,27 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('category.name')
+                    ->label('Category')
+                    ->sortable()
+                    ->searchable(),
+
                 Tables\Columns\TextColumn::make('name')
+                    ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
-                // Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\ActionGroup::make([
-                    Tables\Actions\ViewAction::make(),
-                    Tables\Actions\EditAction::make(),
-                    Tables\Actions\DeleteAction::make()
-                   ,
-                ])
+
+
             ])
+
+
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
@@ -99,10 +113,9 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategories::route('/'),
-            'create' => Pages\CreateCategory::route('/create'),
-            'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'index' => Pages\ListSubCategories::route('/'),
+            'create' => Pages\CreateSubCategory::route('/create'),
+            'edit' => Pages\EditSubCategory::route('/{record}/edit'),
         ];
     }
-
 }
