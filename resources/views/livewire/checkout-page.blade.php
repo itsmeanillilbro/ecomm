@@ -20,7 +20,7 @@
                                         First Name
                                     </label>
                                     <input wire:model="first_name"
-                                        class=" dark:border-none w-full rounded-lg border py-2 px-3    @error('first_name') border-red-500 @enderror"
+                                        class=" w-full rounded-lg border py-2 px-3    @error('first_name') border-red-500 @enderror"
                                         id="first_name" type="text">
                                     </input>
                                     @error('first_name')
@@ -34,7 +34,7 @@
                                         Last Name
                                     </label>
                                     <input wire:model="last_name"
-                                        class=" @error('last_name') border-red-500 @enderror w-full rounded-lg border py-2 px-3  dark:border-none "
+                                        class=" @error('last_name') border-red-500 @enderror w-full rounded-lg border py-2 px-3   "
                                         id="last_name" type="text">
                                     </input>
                                     @error('last_name')
@@ -49,7 +49,7 @@
                                     Phone
                                 </label>
                                 <input wire:model="phone"
-                                    class="@error('phone') border-red-500 @enderror w-full rounded-lg border py-2 px-3  dark:border-none"
+                                    class="@error('phone') border-red-500 @enderror w-full rounded-lg border py-2 px-3  "
                                     id="phone" type="text">
                                 </input>
                                 @error('phone')
@@ -126,7 +126,7 @@
                                 <input wire:model="payment_method" class="hidden peer" id="hosting-small" required=""
                                     type="radio" value="cod" />
                                 <label
-                                    class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                                    class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
                                     for="hosting-small">
                                     <div class="block">
                                         <div class="w-full text-lg font-semibold">
@@ -145,8 +145,8 @@
                                 <input class="hidden peer" id="hosting-big" wire:model="payment_method" type="radio"
                                     value="stripe">
                                 <label
-                                    class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer    peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
-                                    for="hosting-big">
+                                class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100"
+                                for="hosting-big">
                                     <div class="block">
                                         <div class="w-full text-lg font-semibold">
                                             Stripe
@@ -210,11 +210,11 @@
                         </div>
                         </hr>
                     </div>
-                    <button type="submit"
-                        class="bg-green-600 mt-4 w-full p-3 rounded-lg text-lg text-white hover:bg-green-600 ">
-                        <span wire:loading.remove >Place Order</span>
-                        <span wire:loading>Processing...</span>
-                    </button>
+                        <button type="submit"
+                            class="bg-green-600 mt-4 w-full p-3 rounded-lg text-lg text-white hover:bg-green-600 ">
+                            <span wire:loading.remove >Place Order</span>
+                            <span wire:loading>Processing...</span>
+                        </button>
                     <div class="bg-white mt-4 rounded-xl shadow p-4 sm:p-7 ">
                         <div class="text-xl font-bold underline text-gray-700  mb-2">
                             ITEMS SUMMARY

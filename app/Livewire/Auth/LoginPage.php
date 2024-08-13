@@ -44,10 +44,9 @@ class LoginPage extends Component
             ]);
 
             return;
-
-
         }
-        return redirect()->intended();
+
+        return redirect()->intended(route('products'));
     }
     public function render()
     {

@@ -1,12 +1,12 @@
 <div>
     <div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto" wire:key="{{$product->id}}">
-        <section class="overflow-hidden bg-white py-11 font-poppins">
+        <section class="overflow-hidden bg-white py-2 font-poppins">
             <div class="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
                 <div class="flex flex-wrap -mx-4">
                     <div class="w-full mb-8 md:w-1/2 md:mb-0" x-data="{ mainImage: '{{asset('storage/' . $product->images[0])}}' }">
-                        <div class="sticky top-0 z-50 overflow-hidden">
+                        <div class="sticky top-0 overflow-hidden">
                             <div class="relative mb-6 lg:mb-10 flex justify-center items-center">
-                                <img x-bind:src="mainImage" alt="" class="object-cover w-96 h-96">
+                                <img x-bind:src="mainImage" alt="" class="object-cover w-5/6 h-96">
                             </div>
                             <div class="flex-wrap hidden md:flex">
                                 <div class="w-1/2 p-2 sm:w-1/4">

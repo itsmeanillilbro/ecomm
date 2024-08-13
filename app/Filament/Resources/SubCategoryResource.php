@@ -81,6 +81,7 @@ class SubCategoryResource extends Resource
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('name')
+                ->label('Sub Category')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('image'),

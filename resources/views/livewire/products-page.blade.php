@@ -46,9 +46,10 @@
                                 <div class="font-semibold mb-2">{{Number::currency($pricee, 'NPR')}}
                                 </div>
                                 <input type="range" wire:model.live="pricee"
-                                    class="w-full h-1 mb-4 rounded cursor-pointer"
+                                    class="w-full h-1 mb-2 rounded cursor-pointer"
                                     max="500000" value="100000" step="10000">
-
+                                    <div class="font-semibold mb-2">NPR 0 - NPR 5,00,000
+                                    </div>
                             </div>
                         </div>
 

@@ -6,6 +6,7 @@ use App\Livewire\Partials\Header;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\SubCategory;
 use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Title;
@@ -43,9 +44,9 @@ class ProductsPage extends Component
 
     public function addToCart($product_id)
     {
-        // if (!Auth::check()) {
-        //     return redirect()->route('login');
-        // }
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
 
         $total_count = CartManagement::addItemsToCart($product_id);
         $this->dispatch('update-cart-count', total_count: $total_count)->to(Header::class);
@@ -62,7 +63,7 @@ class ProductsPage extends Component
         $products = Product::query()->where('is_active', 1);
 
         if (!empty($this->categories_select)) {
-            $products->whereIn('category_id', $this->categories_select);
+            $products->whereIn('subcategory_id', $this->categories_select);
         }
 
         if (!empty($this->brands_select)) {
@@ -84,7 +85,7 @@ class ProductsPage extends Component
         return view('livewire.products-page', [
             'products' => $products->paginate(6),
             'brands' => Brand::where('is_active', 1)->take(12)->get(['id', 'name', 'slug']),
-            'categories' => Category::where('is_active', 1)->take(12)->get(['id', 'name', 'slug']),
+            'categories' => SubCategory::where('is_active', 1)->take(12)->get(['id', 'name', 'slug']),
         ]);
     }
 }

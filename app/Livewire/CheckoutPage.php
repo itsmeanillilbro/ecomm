@@ -5,7 +5,7 @@ namespace App\Livewire;
 use App\Helpers\CartManagement;
 use App\Mail\OrderPlaced;
 use App\Models\Address;
-use App\Models\order;
+use App\Models\Order;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -38,6 +38,16 @@ if(count($cart_items)==0){
         ]);
 
         $cart_items = CartManagement::getCartItemsFromCookie();
+
+        $cart_items_array = $cart_items->map(function($item) {
+            return [
+                'product_id' => $item->product_id,
+                'quantity' => $item->quantity,
+                'unit_amount' => $item->unit_amount,
+                'total_amount' => $item->total_amount,
+                'image' => $item->image, // Include image if needed
+            ];
+        })->toArray();
         $line_items = [];
         foreach ($cart_items as $item) {
             $line_items[] = [
@@ -93,7 +103,7 @@ if(count($cart_items)==0){
         $order->save();
         $address->order_id = $order->id;
         $address->save();
-        $order->itemss()->createMany($cart_items);
+        $order->itemss()->createMany($cart_items_array);
         CartManagement::clearCartItems();
         Mail::to(request()->user())->send(new OrderPlaced($order));
         return redirect($redirect_url);

@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Helpers\CartManagement;
 use App\Livewire\Partials\Header;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -62,6 +63,9 @@ class ProductDetailPage extends Component
         //         'timer' => 3000,
         //     ]);
         // } else {
+            if (!Auth::check()) {
+                return redirect()->route('login');
+            }
 
             $total_count = CartManagement::addItemsToCartWithQuantity($product_id, $this->quantity);
             $this->dispatch('update-cart-count', total_count: $total_count)->to(Header::class);

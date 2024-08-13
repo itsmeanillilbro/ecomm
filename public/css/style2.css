@@ -1153,10 +1153,11 @@ button.navbar-toggler span.line::after{
 }
 /* slider css */
 .home-slider-2 .menu-slider .home-slider-2{
-    width: 75%;
+    width: 100%;
+
 }
 .home-slider-2 .menu-slider .home-slider-2 .home-slider2 .img-back{
-    height: 466px;
+    height:540px;
     background-position: center;
     background-repeat: no-repeat;
 

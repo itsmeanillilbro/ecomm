@@ -31,6 +31,8 @@ class order extends Model
 
     }
 
+
+
     public function address(){
         return $this->hasOne(Address::class);
     }

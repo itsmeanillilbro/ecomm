@@ -48,7 +48,7 @@
 
 
 
-                                            <li class="menu-link parent" style="white-space:nowrap" >
+                                            <li class="menu-link parent" style="white-space:nowrap">
                                                 <a href="/products" class="link-title">
                                                     <span class="sp-link-title">All Products</span>
 
@@ -56,191 +56,42 @@
 
                                             </li>
 
-                                            <li class="menu-link parent">
-                                                <a href="javascript:void(0)" class="link-title"
-                                                    style="white-space: nowrap;">
-                                                    <span class="sp-link-title">Wears</span>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
+                                            @foreach ($categories as $category)
+                                                <li class="menu-link parent">
+                                                    <a href="javascript:void(0)" class="link-title"
+                                                        style="white-space: nowrap;">
+                                                        <span class="sp-link-title">{{ $category->name }}</span>
+                                                        <i class="fa fa-angle-down"></i>
+                                                    </a>
 
-                                                <ul class="dropdown-submenu mega-menu collapse"
-                                                    id="collapse-top-mega-menu">
-                                                    <li class="megamenu-li parent">
-                                                        <h2 class="sublink-title">Men</h2>
-                                                        <a href="#collapse-top-sub-mega-menu" data-bs-toggle="collapse"
-                                                            class="sublink-title sublink-title-lg">
-                                                            <span>Men</span>
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </a>
-                                                        <ul class="dropdown-supmenu collapse"
-                                                            id="collapse-top-sub-mega-menu">
-                                                            <li class="supmenu-li">
-                                                                <a href="product-style-6.html">Fruit & nut Fruit & nutFruit & nutFruit & nutFruit & nut</a>
+                                                    <ul class="dropdown-submenu mega-menu collapse">
+                                                        @foreach ($category->subcategories as $subcategory)
+                                                            <li class="megamenu-li parent">
+                                                                <a href="#{{ $subcategory->slug }}-menu"
+                                                                    data-bs-toggle="collapse"
+                                                                    class="sublink-title sublink-title-lg">
+                                                                    <span>{{ $subcategory->name }}</span>
+                                                                    <i class="fa fa-angle-down"></i>
+                                                                </a>
+                                                                <ul class="dropdown-supmenu" id="{{ $subcategory->slug }}-menu">
+                                                                    <li class="supmenu-li flex items-center space-x-4">
+                                                                        <a href="/products?categories_select[0]={{$subcategory->id}}"
+                                                                            class="items-center space-x-4">
+                                                                            <img src="{{ Storage::url($subcategory->image) }}"
+                                                                                alt="{{ $subcategory->name }}"
+                                                                                class="w-48 h-40 object-cover rounded-md">
+                                                                            <span
+                                                                                class="text-sm font-bold text-center mt-3">{{ $subcategory->name }}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
                                                             </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                            @endforeach
 
-                                                        </ul>
-                                                    </li>
-                                                    <li class="megamenu-li parent">
-                                                        <h2 class="sublink-title">Women</h2>
-                                                        <a href="#collapse-top-fruits-menu" data-bs-toggle="collapse"
-                                                            class="sublink-title sublink-title-lg">
-                                                            <span>Women</span>
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </a>
-                                                        <ul class="dropdown-supmenu collapse"
-                                                            id="collapse-top-fruits-menu">
-                                                            <li class="supmenu-li">
-                                                                <a href="product-style-6.html">Oranges</a>
-                                                            </li>
 
-                                                        </ul>
-                                                    </li>
-                                                    <li class="megamenu-li parent">
-                                                        <h2 class="sublink-title">Baby</h2>
-                                                        <a href="#collapse-top-banana-menu" data-bs-toggle="collapse"
-                                                            class="sublink-title sublink-title-lg">
-                                                            <span>Baby</span>
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </a>
-                                                        <ul class="dropdown-supmenu collapse"
-                                                            id="collapse-top-banana-menu">
-                                                            <li class="supmenu-li">
-                                                                <a href="product-style-6.html">Fresh gala</a>
-                                                            </li>
-
-                                                        </ul>
-                                                    </li>
-
-                                                </ul>
-                                            </li>
-                                            <li class="menu-link parent">
-                                                <a href="javascript:void(0)" class="link-title">
-                                                    <span class="sp-link-title">Beauty</span>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-
-                                                <ul class="dropdown-submenu mega-menu collapse"
-                                                    id="collapse-top-mega-menu">
-                                                    <li class="megamenu-li parent">
-                                                        <h2 class="sublink-title">Fresh food</h2>
-                                                        <a href="#collapse-top-sub-mega-menu" data-bs-toggle="collapse"
-                                                            class="sublink-title sublink-title-lg">
-                                                            <span>Fresh food</span>
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </a>
-                                                        <ul class="dropdown-supmenu collapse"
-                                                            id="collapse-top-sub-mega-menu">
-                                                            <li class="supmenu-li">
-                                                                <a href="product-style-6.html">Fruit & nut</a>
-                                                            </li>
-
-                                                        </ul>
-                                                    </li>
-                                                    <li class="megamenu-li parent">
-                                                        <h2 class="sublink-title">Mixedfruits</h2>
-                                                        <a href="#collapse-top-fruits-menu" data-bs-toggle="collapse"
-                                                            class="sublink-title sublink-title-lg">
-                                                            <span>Mixedfruits</span>
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </a>
-                                                        <ul class="dropdown-supmenu collapse"
-                                                            id="collapse-top-fruits-menu">
-                                                            <li class="supmenu-li">
-                                                                <a href="product-style-6.html">Oranges</a>
-                                                            </li>
-
-                                                        </ul>
-                                                    </li>
-                                                    <li class="megamenu-li parent">
-                                                        <h2 class="sublink-title">Bananas & plantains</h2>
-                                                        <a href="#collapse-top-banana-menu" data-bs-toggle="collapse"
-                                                            class="sublink-title sublink-title-lg">
-                                                            <span>Bananas & plantains</span>
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </a>
-                                                        <ul class="dropdown-supmenu collapse"
-                                                            id="collapse-top-banana-menu">
-                                                            <li class="supmenu-li">
-                                                                <a href="product-style-6.html">Fresh gala</a>
-                                                            </li>
-
-                                                        </ul>
-                                                    </li>
-
-                                                </ul>
-                                            </li>
-                                            <li class="menu-link parent">
-                                                <a href="javascript:void(0)" class="link-title">
-                                                    <span class="sp-link-title">Electronics</span>
-                                                    <i class="fa fa-angle-down"></i>
-                                                </a>
-
-                                                <ul class="dropdown-submenu mega-menu collapse"
-                                                    id="collapse-top-mega-menu">
-                                                    <li class="megamenu-li parent">
-                                                        <h2 class="sublink-title">Phones</h2>
-                                                        <a href="#collapse-top-sub-mega-menu" data-bs-toggle="collapse"
-                                                            class="sublink-title sublink-title-lg">
-                                                            <span>Phones</span>
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </a>
-                                                        <ul class="dropdown-supmenu collapse"
-                                                            id="collapse-top-sub-mega-menu">
-                                                            <li class="supmenu-li">
-                                                                <a href="product-style-6.html">Fruit & nut</a>
-                                                            </li>
-
-                                                        </ul>
-                                                    </li>
-                                                    <li class="megamenu-li parent">
-                                                        <h2 class="sublink-title">Laptops</h2>
-                                                        <a href="#collapse-top-fruits-menu" data-bs-toggle="collapse"
-                                                            class="sublink-title sublink-title-lg">
-                                                            <span>Laptops</span>
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </a>
-                                                        <ul class="dropdown-supmenu collapse"
-                                                            id="collapse-top-fruits-menu">
-                                                            <li class="supmenu-li">
-                                                                <a href="product-style-6.html">Oranges</a>
-                                                            </li>
-
-                                                        </ul>
-                                                    </li>
-                                                    <li class="megamenu-li parent">
-                                                        <h2 class="sublink-title">Televisions</h2>
-                                                        <a href="#collapse-top-banana-menu" data-bs-toggle="collapse"
-                                                            class="sublink-title sublink-title-lg">
-                                                            <span>Televisions</span>
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </a>
-                                                        <ul class="dropdown-supmenu collapse"
-                                                            id="collapse-top-banana-menu">
-                                                            <li class="supmenu-li">
-                                                                <a href="product-style-6.html">Fresh gala</a>
-                                                            </li>
-
-                                                        </ul>
-                                                    </li>
-
-                                                    <li class="megamenu-li parent">
-                                                        <h2 class="sublink-title">Smartwatch</h2>
-                                                        <a href="#collapse-top-banana-menu" data-bs-toggle="collapse"
-                                                            class="sublink-title sublink-title-lg">
-                                                            <span>TelevisionsSmartwatch</span>
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </a>
-                                                        <ul class="dropdown-supmenu collapse"
-                                                            id="collapse-top-banana-menu">
-                                                            <li class="supmenu-li">
-                                                                <a href="product-style-6.html">Fresh</a>
-                                                            </li>
-
-                                                        </ul>
-                                                    </li>
-
-                                                </ul>
-                                            </li>
                                             <!-- <li class="menu-link parent">
                                                 <a href="javascript:void(0)" class="link-title">
                                                     <span class="sp-link-title">Collection</span>
@@ -273,7 +124,7 @@
                                                 </ul>
                                             </li> -->
 
-                                            <li class="menu-link parent" style="white-space:nowrap" >
+                                            <li class="menu-link parent" style="white-space:nowrap">
                                                 <a href="/products" class="link-title">
                                                     <span class="sp-link-title">Contact</span>
 
@@ -311,7 +162,8 @@
                                                     <a href="/cart" wire:navigate class="cart-count">
                                                         <span class="cart-icon-wrap">
                                                             <span class="cart-icon"><i class="icon-handbag"></i></span>
-                                                            <span id="cart-total" class="bigcounter">{{$total_count}}</span>
+                                                            <span id="cart-total"
+                                                                class="bigcounter">{{$total_count}}</span>
                                                         </span>
                                                     </a>
                                                 </div>

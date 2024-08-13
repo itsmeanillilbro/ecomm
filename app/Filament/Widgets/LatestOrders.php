@@ -14,12 +14,14 @@ class LatestOrders extends BaseWidget
 {
     protected static ?int $sort=2;
     protected int|string|array $columnSpan = 'full';
+    protected static bool $isLazy = false;
     public function table(Table $table): Table
     {
         return $table
             ->query(OrderResource::getEloquentQuery())
             ->defaultPaginationPageOption(5)
             ->defaultSort('created_at', 'desc')
+
             ->columns([
 
                 Tables\Columns\TextColumn::make('id')
