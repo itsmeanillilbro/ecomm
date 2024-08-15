@@ -244,6 +244,8 @@
     <script src="{{asset('js/jquery.isotope.min.js')}}"></script>
     <script src="{{asset('js/range-slider.js')}}"></script>
 
+    <script src="https://khalti.com/static/khalti-checkout.js"></script>
+
 
 
 

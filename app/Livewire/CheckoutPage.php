@@ -24,6 +24,53 @@ if(count($cart_items)==0){
     return redirect('/products');
 }
 }
+
+private function initiatePaymentWithKhalti()
+{
+    $curl = curl_init();
+
+    $data = array(
+        'return_url' => 'http://example.com/',
+        'website_url' => 'https://example.com/',
+        'amount' => 1000,
+        'purchase_order_id' => 'Order01',
+        'purchase_order_name' => 'test',
+        'customer_info' => array(
+            'name' => 'Test Bahadur',
+            'email' => 'test@khalti.com',
+            'phone' => '9800000001'
+        )
+    );
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://a.khalti.com/api/v2/epayment/initiate/',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => json_encode($data),
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: Key live_secret_key_68791341fdd94846a146f0457ff7b455',
+            'Content-Type: application/json',
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+    if (curl_errno($curl)) {
+        curl_close($curl);
+        throw new \Exception('cURL Error: ' . curl_error($curl));
+    }
+
+    curl_close($curl);
+
+    return ['response_code' => $httpCode, 'response' => $response];
+}
+
     public function placeOrder()
     {
         $this->validate([
@@ -92,13 +139,20 @@ if(count($cart_items)==0){
                 'mode' => 'payment',
                 'success_url' => route('success') . '?session_id={CHECKOUT_SESSION_ID}',
                 'cancel_url' => route('cancel'),
-
             ]);
             $redirect_url = $sessionCheckout->url;
-
+        } elseif ($this->payment_method == 'khalti') {
+            $response = $this->initiatePaymentWithKhalti();
+            $responseData = json_decode($response['response'], true);
+            if ($response['response_code'] == 200 && isset($responseData['payment_url'])) {
+                $redirect_url = $responseData['payment_url'];
+            } else {
+                throw new \Exception('Khalti payment initiation failed: ' . $response['response']);
+            }
         } else {
             $redirect_url = route('success');
         }
+
 
         $order->save();
         $address->order_id = $order->id;

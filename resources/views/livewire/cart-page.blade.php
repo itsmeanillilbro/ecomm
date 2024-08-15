@@ -93,5 +93,6 @@
             </div>
         </div>
     </section>
+
     <!-- cart end -->
 </div>
